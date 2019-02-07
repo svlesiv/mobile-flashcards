@@ -28,7 +28,7 @@ export function addCard(card) {
 export function handleFetchDecks() {
     return (dispatch) => {
       return fetchDecks()
-        .then(({ decks }) => {
+        .then(decks => {
           dispatch(receiveDecks(decks))     
         })
     }
