@@ -1,9 +1,11 @@
 import React from "react";
+import { View, Platform, StatusBar } from "react-native";
+
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
-import { View, Platform, StatusBar } from "react-native";
+
 import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import { Constants } from "expo";
 
@@ -20,7 +22,7 @@ function FlashcardStatusBar({backgroundColor, ...props}) {
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
       <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
-  )
+  );
 }
 
 const RouteConfigs = {
