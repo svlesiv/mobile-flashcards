@@ -4,9 +4,13 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
 import { View, Platform } from "react-native";
-import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer } from "react-navigation";
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
+import { purple, white } from "./utils/colors";
 import Decks from "./components/Decks";
 import NewDeck from "./components/NewDeck";
+import Deck from "./components/Deck";
+import NewCard from "./components/NewCard";
+import Quiz from "./components/Quiz";
 
 const store = createStore(reducer, middleware);
 
@@ -42,14 +46,50 @@ Platform.OS === "ios"
 ? createBottomTabNavigator(RouteConfigs, TabNavigatorConfig)
 : createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig);
 
-const TabsContainer = createAppContainer(Tabs);
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  }
+})
+
+const StackContainer = createAppContainer(MainNavigator);
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <TabsContainer/>
+          <StackContainer/>
         </View>
       </Provider>
     );
