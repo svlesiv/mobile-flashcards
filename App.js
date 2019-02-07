@@ -5,7 +5,6 @@ import reducer from "./reducers";
 import middleware from "./middleware";
 import { View, Platform } from "react-native";
 import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
-import { purple, white } from "./utils/colors";
 import Decks from "./components/Decks";
 import NewDeck from "./components/NewDeck";
 import Deck from "./components/Deck";
@@ -56,27 +55,27 @@ const MainNavigator = createStackNavigator({
   Deck: {
     screen: Deck,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: 'green',
       }
     }
   },
   NewCard: {
     screen: NewCard,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: 'green',
       }
     }
   },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: 'white',
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: 'green',
       }
     }
   }
