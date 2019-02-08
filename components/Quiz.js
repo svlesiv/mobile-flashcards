@@ -4,18 +4,31 @@ import { View, Text, TouchableOpacity } from "react-native";
 
 class Quiz extends Component {
   state = {
-    index: 0
+    index: 0,
+    correct: 0,
+    incorrect: 0
   }
   static navigationOptions = {
     title: 'Quiz',
   };
-
-  nextCard = () => {
+  
+  handleAnswer = (bool) => {
     if(this.state.index < this.props.deck.questions.length-1) {
       this.setState({
         index: this.state.index + 1
       })
     }
+    if (this.state.correct + this.state.incorrect < this.props.deck.questions.length){
+      if (bool){
+        this.setState({
+          correct: this.state.correct + 1
+        })
+      }else {
+        this.setState({
+          incorrect: this.state.incorrect + 1
+        })
+      } 
+    } 
   }
 
   render() {
@@ -24,13 +37,13 @@ class Quiz extends Component {
 
     return (
       <View>
-        <Text>statistic</Text> 
+        <Text>{this.state.correct} / {deck.questions.length}</Text> 
         <Text>{deck.questions[index].question}</Text>
         <Text>{deck.questions[index].answer}</Text>
-        <TouchableOpacity onPress={() => this.nextCard()}>
+        <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
           <Text>Correct</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.nextCard()}>
+        <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
           <Text>Incorrect</Text>
         </TouchableOpacity>
       </View>
