@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text, TouchableOpacity } from "react-native";
+import Card from "./Card";
 
 class Quiz extends Component {
   state = {
@@ -10,17 +11,20 @@ class Quiz extends Component {
     showAnswer: false
   }
   static navigationOptions = {
-    title: 'Quiz',
+    title: "Quiz",
   };
-  
-  handleAnswer = (bool) => {
+
+  nextCard = () => {
     if(this.state.index < this.props.deck.questions.length-1) {
       this.setState({
         index: this.state.index + 1
       })
     }
+  }
+
+  gradeAnswer = (isCorrect) => {
     if (this.state.correct + this.state.incorrect < this.props.deck.questions.length){
-      if (bool){
+      if (isCorrect){
         this.setState({
           correct: this.state.correct + 1
         })
@@ -31,42 +35,26 @@ class Quiz extends Component {
       } 
     } 
   }
+  
+  handleAnswer = (isCorrect) => {
+    this.nextCard();
+    this.gradeAnswer(isCorrect); 
+  }
 
   render() {
-    const { index, showAnswer } = this.state;
+    const { index, correct } = this.state;
     const { deck } = this.props;
 
     return (
-      showAnswer 
-        ? (
-          <View>
-            <Text>{this.state.correct} / {deck.questions.length}</Text> 
-            <TouchableOpacity onPress={() => this.setState({showAnswer: !this.state.showAnswer})}>
-              <Text>Question</Text>
-            </TouchableOpacity>
-            <Text>{deck.questions[index].answer}</Text>
-            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
-              <Text>Correct</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
-              <Text>Incorrect</Text>
-            </TouchableOpacity>
-          </View>
-        ):(
-          <View>
-            <Text>{this.state.correct} / {deck.questions.length}</Text> 
-            <Text>{deck.questions[index].question}</Text>
-            <TouchableOpacity onPress={() => this.setState({showAnswer: !this.state.showAnswer})}>
-              <Text>Answer</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
-              <Text>Correct</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
-              <Text>Incorrect</Text>
-            </TouchableOpacity>
-          </View>
-        ) 
+      <View>
+        <Text>{correct} / {deck.questions.length}</Text>
+        <Card 
+          deck={deck} 
+          index={index} 
+          correct={correct} 
+          handleAnswer={this.handleAnswer}
+          />
+      </View>
     );
   }
 }

@@ -7,12 +7,12 @@ let decks = {
       title: 'React',
       questions: [
         {
-          question: 'What is React?',
-          answer: 'A library for managing user interfaces'
+          question: 'React is a library for managing user interfaces.',
+          answer: 'yes'
         },
         {
-          question: 'Where do you make Ajax requests in React?',
-          answer: 'The componentDidMount lifecycle event'
+          question: 'Ajax requests in React happens in shouldComponentUpdate lifecycle event.',
+          answer: 'no'
         }
       ]
     },
@@ -20,8 +20,8 @@ let decks = {
       title: 'JavaScript',
       questions: [
         {
-          question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared.'
+          question: 'Closure is the combination of a function and the lexical environment within which that function was declared.',
+          answer: 'yes'
         }
       ]
     }
@@ -34,6 +34,7 @@ export function fetchDecks() {
             AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks));
             return decks;
         } else {
+            //AsyncStorage.removeItem(DECK_STORAGE_KEY) 
             return JSON.parse(results);
         } 
     });       
