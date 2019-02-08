@@ -6,7 +6,8 @@ class Quiz extends Component {
   state = {
     index: 0,
     correct: 0,
-    incorrect: 0
+    incorrect: 0,
+    showAnswer: false
   }
   static navigationOptions = {
     title: 'Quiz',
@@ -32,21 +33,40 @@ class Quiz extends Component {
   }
 
   render() {
-    const { index } = this.state;
+    const { index, showAnswer } = this.state;
     const { deck } = this.props;
 
     return (
-      <View>
-        <Text>{this.state.correct} / {deck.questions.length}</Text> 
-        <Text>{deck.questions[index].question}</Text>
-        <Text>{deck.questions[index].answer}</Text>
-        <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
-          <Text>Correct</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
-          <Text>Incorrect</Text>
-        </TouchableOpacity>
-      </View>
+      showAnswer 
+        ? (
+          <View>
+            <Text>{this.state.correct} / {deck.questions.length}</Text> 
+            <TouchableOpacity onPress={() => this.setState({showAnswer: !this.state.showAnswer})}>
+              <Text>Question</Text>
+            </TouchableOpacity>
+            <Text>{deck.questions[index].answer}</Text>
+            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
+              <Text>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
+              <Text>Incorrect</Text>
+            </TouchableOpacity>
+          </View>
+        ):(
+          <View>
+            <Text>{this.state.correct} / {deck.questions.length}</Text> 
+            <Text>{deck.questions[index].question}</Text>
+            <TouchableOpacity onPress={() => this.setState({showAnswer: !this.state.showAnswer})}>
+              <Text>Answer</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='yes')}>
+              <Text>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleAnswer(deck.questions[index].answer==='no')}>
+              <Text>Incorrect</Text>
+            </TouchableOpacity>
+          </View>
+        ) 
     );
   }
 }
