@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { View, Text } from "react-native";
+import { FlatList } from "react-native";
 import { handleFetchDecks } from "../actions";
 
 import DeckPreview from "./DeckPreview";
@@ -12,27 +12,25 @@ class Decks extends Component {
   }
   
   render() {
-    const {decks, decksIds} = this.props;
+    const { decks, decksIds } = this.props;
     return (
-      <View>
-          {decksIds.map(deck => (
-            <>
-              <DeckPreview 
-                key={deck} 
-                title={decks[deck].title}
-                numCards={decks[deck].questions.length}/>
-              <Text>___________________</Text>
-            </>
-            ))}
-      </View>  
+      <FlatList
+        data={decksIds}
+        keyExtractor={(item) => {return decks[item].title}}
+        renderItem={({item}) => 
+            <DeckPreview 
+              key={decks[item].title}
+              title={decks[item].title}
+              numCards={decks[item].questions.length}/>
+      }/> 
     );
   }
 }
 
-function mapStateToProps(decks) {
+function mapStateToProps(state) {
     return {
-      decks,
-      decksIds: Object.keys(decks)
+      decks: state,
+      decksIds: Object.keys(state)
     };
   }
 
