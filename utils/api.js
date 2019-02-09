@@ -34,14 +34,19 @@ export function fetchDecks() {
             AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decks));
             return decks;
         } else {
-            //AsyncStorage.removeItem(DECK_STORAGE_KEY) 
+            AsyncStorage.removeItem(DECK_STORAGE_KEY) // this is for testing; need to reload twice to get default data
             return JSON.parse(results);
         } 
     });       
 }
 
-export function saveDeck({ deck, key }) {
+export function saveDeck({ title, deck }) {
     return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({
-      [key]: deck
+      [title]: deck
     }));
+}
+
+export function saveCard(deck, card) {
+  deck.questions.push(card);
+  return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify(decks))
 }

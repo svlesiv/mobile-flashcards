@@ -1,4 +1,4 @@
-import { fetchDecks, saveDeck } from "../utils/api";
+import { fetchDecks } from "../utils/api";
 
 export const RECEIVE_DECKS = "RECEIVE_DECKS";
 export const ADD_DECK = "ADD_DECK";
@@ -18,10 +18,11 @@ export function addDeck(deck) {
   }
 }
 
-export function addCard(card) {
+export function addCard(card, cardDeck) {
     return {
       type: ADD_CARD,
       card,
+      cardDeck,
     }
 }
 
@@ -33,12 +34,3 @@ export function handleFetchDecks() {
         })
     }
 }
-
-export function handleAddDeck(deck, key) {
-    return (dispatch) => {
-       return saveDeck({
-        deck,
-        key
-      }).then((deck) => dispatch(addDeck(deck))
-    )}
-  }
