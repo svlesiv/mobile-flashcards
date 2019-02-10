@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text, TouchableOpacity } from "react-native";
 import Card from "./Card";
+import QuizScore from "./QuizScore";
 
 class Quiz extends Component {
   state = {
@@ -41,19 +42,38 @@ class Quiz extends Component {
     this.gradeAnswer(isCorrect); 
   }
 
+  resetQuiz = () => {
+    this.setState({
+      index: 0,
+      correct: 0,
+      incorrect: 0
+    })
+  }
+
   render() {
-    const { index, correct } = this.state;
-    const { deck } = this.props;
+    const { index, correct, incorrect } = this.state;
+    const { deck, deckId } = this.props;
+    const totalAnsw = correct + incorrect;
 
     return (
       <View>
-        <Text>{correct} / {deck.questions.length}</Text>
-        <Card 
-          deck={deck} 
-          index={index} 
-          correct={correct} 
-          handleAnswer={this.handleAnswer}
+        <Text>{totalAnsw} / {deck.questions.length}</Text>
+        {totalAnsw !== deck.questions.length 
+         ? (
+          <Card 
+            deck={deck} 
+            index={index} 
+            correct={correct} 
+            handleAnswer={this.handleAnswer}
           />
+         ):(
+           <QuizScore
+            correct={correct}
+            numQuestions={deck.questions.length}
+            title={deckId}
+            resetQuiz={this.resetQuiz}
+            />
+         )}
       </View>
     );
   }
@@ -61,7 +81,6 @@ class Quiz extends Component {
 
 function mapStateToProps(state, { navigation }) {
   const { deckId } = navigation.state.params;
-
   return {
     deckId,
     deck: state[deckId]
