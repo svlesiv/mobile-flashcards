@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { addDeck } from "../actions";
 import { saveDeck } from "../utils/api";
@@ -24,13 +24,15 @@ class NewDeck extends Component {
       )
     );
     //save to AsyncStorage
-    saveDeck(this.state.text, newDeck );
+    saveDeck(this.state.text, newDeck)
+    //navigate to newly created deck
+    this.props.navigation.navigate('Deck', {deckId: this.state.text});
 
     this.setState({
       text: ''
     })
   }
-  
+
   render() {
     return (
       <View>
@@ -41,7 +43,7 @@ class NewDeck extends Component {
           maxLength = {40}
           placeholder="Deck Title"/>
         <TouchableOpacity onPress={() => this.submit()}>
-          <Text>Submit</Text>
+          <Text>Create Deck</Text>
         </TouchableOpacity>
       </View>
     );
