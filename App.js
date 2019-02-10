@@ -8,6 +8,7 @@ import middleware from "./middleware";
 
 import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import { Constants } from "expo";
+import { setLocalNotification } from "./utils/notifications";
 
 import Decks from "./components/Decks";
 import NewDeck from "./components/NewDeck";
@@ -96,6 +97,9 @@ const MainNavigator = createStackNavigator({
 const StackContainer = createAppContainer(MainNavigator);
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={store}>

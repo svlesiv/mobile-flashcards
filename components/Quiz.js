@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { clearLocalNotification, setLocalNotification } from "../utils/notifications";
 import { View, Text, TouchableOpacity } from "react-native";
 import Card from "./Card";
 import QuizScore from "./QuizScore";
@@ -39,7 +40,10 @@ class Quiz extends Component {
   
   handleAnswer = (isCorrect) => {
     this.nextCard();
-    this.gradeAnswer(isCorrect); 
+    this.gradeAnswer(isCorrect);
+
+    // clear notifications after user took a quiz
+    clearLocalNotification().then(setLocalNotification);
   }
 
   resetQuiz = () => {
