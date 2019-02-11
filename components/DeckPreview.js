@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { withNavigation } from "react-navigation";
-import { textSecondary, textMain, bodySecondary } from "../utils/colors";
+import { textColorSecondary, textColorPrimary, baseColorSecondary } from "../utils/colors";
 
 class DeckPreview extends Component {
   render() {
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
     margin: 10,
     paddingTop: 20,
     paddingBottom: 30,
-    backgroundColor: bodySecondary,
+    backgroundColor: baseColorSecondary,
     shadowRadius: 3,
     shadowOpacity: 0.8,
-    shadowColor: textSecondary,
+    shadowColor: textColorSecondary,
     shadowOffset: {
       width: 0,
       height: 3
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
   },
   header:{
     fontSize: 30,
-    color: textMain,
+    color: textColorPrimary,
     padding: 5,
   },
   body:{
     fontSize: 20,
-    color: textSecondary,
+    color: textColorSecondary,
   }
 })
 

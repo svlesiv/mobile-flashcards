@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FlatList, StyleSheet } from "react-native";
 import { handleFetchDecks } from "../actions";
-import { bodyMain } from "../utils/colors";
+import { baseColorPrimary } from "../utils/colors";
 
 import DeckPreview from "./DeckPreview";
 
@@ -38,7 +38,7 @@ function mapStateToProps(state) {
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: bodyMain
+    backgroundColor: baseColorPrimary
   }
 })
 

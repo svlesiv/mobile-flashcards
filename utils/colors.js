@@ -1,4 +1,4 @@
-export const textMain = "rgba(40, 40, 40, 1)";
-export const textSecondary = "rgba(140, 140, 140, 1)";
-export const bodyMain = "rgba(230, 230, 230, 1)";
-export const bodySecondary = "rgba(250, 250, 250, 1)";
+export const textColorPrimary = "rgba(40, 40, 40, 1)";
+export const textColorSecondary = "rgba(140, 140, 140, 1)";
+export const baseColorPrimary = "rgba(230, 230, 230, 1)";
+export const baseColorSecondary = "rgba(250, 250, 250, 1)";
