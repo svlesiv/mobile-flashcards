@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Platform, StatusBar } from "react-native";
+import { View, Platform, StatusBar, Text, StyleSheet } from "react-native";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -9,6 +9,7 @@ import middleware from "./middleware";
 import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import { Constants } from "expo";
 import { setLocalNotification } from "./utils/notifications";
+import { baseColorPrimary, textColorPrimary, textColorSecondary } from "./utils/colors";
 
 import Decks from "./components/Decks";
 import NewDeck from "./components/NewDeck";
@@ -30,13 +31,13 @@ const RouteConfigs = {
   Decks: {
     screen: Decks,
     navigationOptions: {
-      tabBarLabel: "Decks",
+      tabBarLabel: "Decks"
     },
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions: {
-      tabBarLabel: "New Deck",
+      tabBarLabel: "New Deck"
     },
   }
 };
@@ -46,9 +47,14 @@ const TabNavigatorConfig = {
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === "ios" ? 'green' : 'blue',
+    activeTintColor: textColorPrimary,
+    inactiveTintColor: textColorSecondary,
     style: {
-      backgroundColor: 'white',
+      backgroundColor: baseColorPrimary,
+    },
+    labelStyle: {
+      fontSize: 17,
+      fontWeight: "bold"
     }
   }
 };
@@ -103,11 +109,25 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={{flex: 1}}>
-          <FlashcardStatusBar backgroundColor={'green'} barStyle="dark-content" />
+        <View style={styles.container}>
+          <FlashcardStatusBar backgroundColor={baseColorPrimary} barStyle="dark-content" />
+          <Text style={styles.header}>UdaciFlashcards</Text>
           <StackContainer/>
         </View>
       </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor: baseColorPrimary
+  },
+  header:{
+    alignSelf: "center",
+    fontSize: 20,
+    padding:10,
+    fontWeight: "bold"
+  }
+})
