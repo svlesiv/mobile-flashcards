@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
-import { FlatList } from "react-native";
+import { connect } from "react-redux";
+import { FlatList, StyleSheet } from "react-native";
 import { handleFetchDecks } from "../actions";
+import { bodyMain } from "../utils/colors";
 
 import DeckPreview from "./DeckPreview";
 
@@ -15,6 +16,7 @@ class Decks extends Component {
     const { decks, decksIds } = this.props;
     return (
       <FlatList
+        style={styles.container}
         data={decksIds}
         keyExtractor={(item) => {return decks[item].title}}
         renderItem={({item}) => 
@@ -28,10 +30,16 @@ class Decks extends Component {
 }
 
 function mapStateToProps(state) {
-    return {
-      decks: state,
-      decksIds: Object.keys(state)
-    };
+  return {
+    decks: state,
+    decksIds: Object.keys(state)
+  };
+}
+
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor: bodyMain
   }
+})
 
 export default connect(mapStateToProps)(Decks)
