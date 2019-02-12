@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import { addDeck } from "../actions";
 import { saveDeck } from "../utils/api";
-
+import Button from "./Button";
+import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from "../utils/colors";
 
 class NewDeck extends Component {
   state = {
@@ -30,24 +31,47 @@ class NewDeck extends Component {
 
     this.setState({
       text: ''
-    })
+    });
   }
 
   render() {
     return (
       <View>
-        <Text>What is the title of your new deck?</Text>
+        <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput 
+          style={styles.input}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           maxLength = {40}
-          placeholder="Deck Title"/>
-        <TouchableOpacity onPress={() => this.submit()}>
-          <Text>Create Deck</Text>
-        </TouchableOpacity>
+          placeholder="Deck Title"
+          autoFocus={true}/>
+        <Button 
+            style={{ backgroundColor: baseColorAccentPrimary}}
+            onPress={() => this.submit()}>
+          Create Deck
+        </Button>
       </View>
     );
   }
 }
 
-export default connect()(NewDeck)
+const styles = StyleSheet.create({
+  header:{
+    alignSelf: "center",
+    textAlign: "center",
+    fontSize: 30,
+    color: textColorPrimary,
+    padding: 50,
+  },
+  input:{
+    borderWidth: 1,
+    borderColor: textColorSecondary,
+    borderRadius: 5,
+    padding: 20,
+    margin: 40,
+    marginTop: 0,
+    fontSize: 20
+  }
+});
+
+export default connect()(NewDeck);
