@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import RadioForm from "react-native-simple-radio-button";
 import { addCard } from "../actions";
 import { saveCard } from "../utils/api";
+import Button from "./Button";
+import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from "../utils/colors";
 
 class NewCard extends Component {
   state = {
@@ -45,20 +47,31 @@ class NewCard extends Component {
     ];
     
     return (
-      <View>
+      <View style={styles.container}>
         <TextInput 
+          style={styles.input}
           onChangeText={(question) => this.setState({question})}
           value={this.state.text}
           maxLength = {40}
-          placeholder="Statement" />
-        <Text>Answer: </Text>
+          placeholder="Plese write your question for the card" />
+        <Text style={styles.header}>answer</Text>
         <RadioForm
+          style={styles.radioButtons}
           radio_props={radio_props}
           initial={0}
-          onPress={(answer) => {this.setState({answer})}}/>
-        <TouchableOpacity onPress={() => this.submit()}>
-          <Text>Submit</Text>
-        </TouchableOpacity>
+          onPress={(answer) => {this.setState({answer})}}
+          animation={true}
+          borderWidth={1}
+          buttonInnerColor={baseColorAccentPrimary}
+          buttonOuterColor={baseColorAccentPrimary}
+          buttonSize={15}
+          buttonOuterSize={30}
+          labelStyle={{fontSize: 20, color: textColorPrimary}}/>
+        <Button
+            style={{ backgroundColor: baseColorAccentPrimary}}
+            onPress={() => this.submit()}>
+          Submit
+        </Button>
       </View> 
     );
   }
@@ -72,4 +85,29 @@ function mapStateToProps(state, { navigation }) {
   };
 }
 
-export default connect(mapStateToProps)(NewCard)
+const styles = StyleSheet.create({
+  container:{
+    alignItems: "center"
+  },
+  header:{
+    textAlign: "center",
+    fontSize: 30,
+    color: textColorPrimary,
+    padding: 50,
+  },
+  input:{
+    borderWidth: 1,
+    borderColor: textColorSecondary,
+    borderRadius: 5,
+    padding: 20,
+    marginTop: 40,
+    marginBottom: -20,
+    fontSize: 20
+  },
+  radioButtons:{
+    marginTop: -30,
+    marginBottom: 30,
+  }
+});
+
+export default connect(mapStateToProps)(NewCard);
