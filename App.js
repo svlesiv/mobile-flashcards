@@ -68,33 +68,36 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      header: null
+      header: null,
     }
   },
   Deck: {
     screen: Deck,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: textColorPrimary,
       headerStyle: {
-        backgroundColor: 'green',
+        backgroundColor: baseColorPrimary,
+        marginTop: -40,
       }
     }
   },
   NewCard: {
     screen: NewCard,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: textColorPrimary,
       headerStyle: {
-        backgroundColor: 'green',
+        backgroundColor: baseColorPrimary,
+        marginTop: -40,
       }
     }
   },
   Quiz: {
     screen: Quiz,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: textColorPrimary,
       headerStyle: {
-        backgroundColor: 'green',
+        backgroundColor: baseColorPrimary,
+        marginTop: -40,
       }
     }
   }
@@ -126,6 +129,7 @@ const styles = StyleSheet.create({
   },
   header:{
     alignSelf: "center",
+    color: textColorPrimary,
     fontSize: 20,
     padding:10,
     fontWeight: "bold"
