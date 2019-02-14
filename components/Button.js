@@ -12,7 +12,9 @@ export default function Button({ children, onPress, style={} }) {
 
 const styles = StyleSheet.create({
   button: {
-    padding: 13,
+    padding: 15,
+    paddingLeft: 30,
+    paddingRight: 30,
     borderRadius: 4,
     margin: 10,
     alignSelf: "center",
@@ -22,10 +24,10 @@ const styles = StyleSheet.create({
     shadowOffset: {
       width: 0,
       height: 3
-    },
+    }
   },
   buttonText: {
     color: baseColorSecondary,
-    fontSize: 25,
+    fontSize: 25
   }
 })

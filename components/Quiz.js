@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { clearLocalNotification, setLocalNotification } from "../utils/notifications";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Card from "./Card";
 import QuizScore from "./QuizScore";
+import { textColorPrimary } from "../utils/colors";
 
 class Quiz extends Component {
   state = {
@@ -61,7 +62,7 @@ class Quiz extends Component {
 
     return (
       <View>
-        <Text>{totalAnsw} / {deck.questions.length}</Text>
+        <Text style={styles.score}>{totalAnsw} / {deck.questions.length}</Text>
         {totalAnsw !== deck.questions.length 
          ? (
           <Card 
@@ -90,5 +91,13 @@ function mapStateToProps(state, { navigation }) {
     deck: state[deckId]
   };
 }
+
+const styles = StyleSheet.create({
+  score:{
+    fontSize: 20,
+    color: textColorPrimary,
+    padding: 15,
+  }
+});
 
 export default connect(mapStateToProps)(Quiz);

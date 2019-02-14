@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet} from "react-native";
 import { withNavigation } from "react-navigation";
+import Button from "./Button";
+import { textColorPrimary, baseColorAccentPrimary } from "../utils/colors";
 
 const QuizScore = (props) => {
   resetQuiz = () => {
@@ -11,15 +13,28 @@ const QuizScore = (props) => {
   const { correct, numQuestions, title, navigation } = props;
   return (
     <View>
-      <Text>Your score is {correct} out of {numQuestions}.</Text>
-      <TouchableOpacity onPress={() => this.resetQuiz()}>
-        <Text>Restart Quiz</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Deck', {deckId: title})}>
-        <Text>Back to Deck</Text>
-      </TouchableOpacity>
+      <Text style={styles.score}>Your score is {correct} out of {numQuestions}.</Text>
+      <Button
+        style={{backgroundColor: baseColorAccentPrimary}}
+        onPress={() => this.resetQuiz()}>
+          Restart Quiz
+      </Button>
+      <Button
+        style={{backgroundColor: baseColorAccentPrimary}}
+        onPress={() => navigation.navigate('Deck', {deckId: title})}>
+          Back to Deck
+      </Button>
     </View>
   );  
 }
+
+const styles = StyleSheet.create({
+  score:{
+    textAlign: "center",
+    fontSize: 30,
+    color: textColorPrimary,
+    padding: 50
+  }
+});
 
 export default withNavigation(QuizScore);
