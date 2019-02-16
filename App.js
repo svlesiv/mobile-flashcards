@@ -54,7 +54,8 @@ const TabNavigatorConfig = {
     },
     labelStyle: {
       fontSize: 17,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      padding: 10
     }
   }
 };

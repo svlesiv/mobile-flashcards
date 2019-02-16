@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Text, TextInput, StyleSheet } from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 import { addCard } from '../actions';
 import { saveCard } from '../utils/api';
@@ -47,7 +47,7 @@ class NewCard extends Component {
     ];
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
         <TextInput
           style={styles.input}
           onChangeText={(question) => this.setState({question})}
@@ -73,7 +73,7 @@ class NewCard extends Component {
             onPress={() => this.submit()}>
           Submit
         </Button>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -94,20 +94,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
     color: textColorPrimary,
-    padding: 50,
+    padding: 30,
   },
   input:{
     borderWidth: 1,
     borderColor: textColorSecondary,
     borderRadius: 5,
     padding: 20,
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: -20,
     fontSize: 20
   },
   radioButtons:{
     marginTop: -30,
-    marginBottom: 30,
   }
 });
 

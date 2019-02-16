@@ -31,7 +31,7 @@ const QuizScore = (props) => {
 const styles = StyleSheet.create({
   score:{
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 25,
     color: textColorPrimary,
     padding: 50
   }
