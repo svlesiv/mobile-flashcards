@@ -1,8 +1,8 @@
-import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { baseColorSecondary, textColorSecondary } from "../utils/colors"
+import React from 'react';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { baseColorSecondary, textColorSecondary } from '../utils/colors';
 
-export default function Button({ children, onPress, style={} }) {
+const Button = ({ children, onPress, style={} }) => {
   return (
     <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
       <Text style={styles.buttonText}>{children}</Text>
@@ -30,4 +30,6 @@ const styles = StyleSheet.create({
     color: baseColorSecondary,
     fontSize: 25
   }
-})
+});
+
+export default Button;

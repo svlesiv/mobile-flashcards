@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet} from "react-native";
-import { withNavigation } from "react-navigation";
-import Button from "./Button";
-import { textColorPrimary, baseColorAccentPrimary } from "../utils/colors";
+import React from 'react';
+import { View, Text, StyleSheet} from 'react-native';
+import { withNavigation } from 'react-navigation';
+import Button from './Button';
+import { textColorPrimary, baseColorAccentPrimary } from '../utils/colors';
 
 const QuizScore = (props) => {
   resetQuiz = () => {
@@ -25,12 +25,12 @@ const QuizScore = (props) => {
           Back to Deck
       </Button>
     </View>
-  );  
+  );
 }
 
 const styles = StyleSheet.create({
   score:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 30,
     color: textColorPrimary,
     padding: 50

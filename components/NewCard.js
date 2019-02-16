@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import RadioForm from "react-native-simple-radio-button";
-import { addCard } from "../actions";
-import { saveCard } from "../utils/api";
-import Button from "./Button";
-import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from "../utils/colors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import RadioForm from 'react-native-simple-radio-button';
+import { addCard } from '../actions';
+import { saveCard } from '../utils/api';
+import Button from './Button';
+import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from '../utils/colors';
 
 class NewCard extends Component {
   state = {
@@ -13,12 +13,12 @@ class NewCard extends Component {
     answer: 'yes'
   }
   static navigationOptions = {
-    title: 'Add Card',
+    title: 'Add Card'
   };
 
   submit = () => {
     const { dispatch, deck, navigation } = this.props;
-   
+
     //create object with question and answer
     const newCard = {
       question: this.state.question,
@@ -29,10 +29,10 @@ class NewCard extends Component {
     dispatch(
       addCard(
         newCard,
-        deck,
+        deck
       )
     );
-    
+
     //save to AsyncStorage
     saveCard(deck, newCard);
 
@@ -45,15 +45,16 @@ class NewCard extends Component {
       {label: 'yes', value: 'yes' },
       {label: 'no', value: 'no' }
     ];
-    
+
     return (
       <View style={styles.container}>
-        <TextInput 
+        <TextInput
           style={styles.input}
           onChangeText={(question) => this.setState({question})}
           value={this.state.text}
           maxLength = {40}
-          placeholder="Plese write your question for the card" />
+          autoFocus={true}
+          placeholder='Plese write your question for the card' />
         <Text style={styles.header}>answer</Text>
         <RadioForm
           style={styles.radioButtons}
@@ -72,7 +73,7 @@ class NewCard extends Component {
             onPress={() => this.submit()}>
           Submit
         </Button>
-      </View> 
+      </View>
     );
   }
 }
@@ -87,10 +88,10 @@ function mapStateToProps(state, { navigation }) {
 
 const styles = StyleSheet.create({
   container:{
-    alignItems: "center"
+    alignItems: 'center',
   },
   header:{
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 30,
     color: textColorPrimary,
     padding: 50,

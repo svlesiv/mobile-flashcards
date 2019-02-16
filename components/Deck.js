@@ -69,25 +69,25 @@ function mapStateToProps(state, { navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
     margin: 10,
     paddingTop: 20,
     paddingBottom: 30
   },
-  header:{
+  header: {
     fontSize: 50,
     color: textColorPrimary,
-    padding: 5,
+    padding: 5
   },
-  body:{
+  body: {
     fontSize: 30,
     color: textColorSecondary,
     paddingBottom: 35,
     paddingTop: 5
   },
   buttonGroup: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 

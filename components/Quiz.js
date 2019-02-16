@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { clearLocalNotification, setLocalNotification } from "../utils/notifications";
-import { View, Text, StyleSheet } from "react-native";
-import Card from "./Card";
-import QuizScore from "./QuizScore";
-import { textColorPrimary } from "../utils/colors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
+import { View, Text, StyleSheet } from 'react-native';
+import Card from './Card';
+import QuizScore from './QuizScore';
+import { textColorPrimary } from '../utils/colors';
 
 class Quiz extends Component {
   state = {
@@ -14,7 +14,7 @@ class Quiz extends Component {
     showAnswer: false
   }
   static navigationOptions = {
-    title: "Quiz",
+    title: 'Quiz'
   };
 
   nextCard = () => {
@@ -35,10 +35,10 @@ class Quiz extends Component {
         this.setState({
           incorrect: this.state.incorrect + 1
         })
-      } 
-    } 
+      }
+    }
   }
-  
+
   handleAnswer = (isCorrect) => {
     this.nextCard();
     this.gradeAnswer(isCorrect);
@@ -63,12 +63,12 @@ class Quiz extends Component {
     return (
       <View>
         <Text style={styles.score}>{totalAnsw} / {deck.questions.length}</Text>
-        {totalAnsw !== deck.questions.length 
+        {totalAnsw !== deck.questions.length
          ? (
-          <Card 
-            deck={deck} 
-            index={index} 
-            correct={correct} 
+          <Card
+            deck={deck}
+            index={index}
+            correct={correct}
             handleAnswer={this.handleAnswer}
           />
          ):(
@@ -93,10 +93,10 @@ function mapStateToProps(state, { navigation }) {
 }
 
 const styles = StyleSheet.create({
-  score:{
+  score: {
     fontSize: 20,
     color: textColorPrimary,
-    padding: 15,
+    padding: 15
   }
 });
 

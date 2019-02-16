@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { View, Text, TextInput, StyleSheet } from "react-native";
-import { addDeck } from "../actions";
-import { saveDeck } from "../utils/api";
-import Button from "./Button";
-import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from "../utils/colors";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { addDeck } from '../actions';
+import { saveDeck } from '../utils/api';
+import Button from './Button';
+import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from '../utils/colors';
 
 class NewDeck extends Component {
   state = {
@@ -38,14 +38,14 @@ class NewDeck extends Component {
     return (
       <View>
         <Text style={styles.header}>What is the title of your new deck?</Text>
-        <TextInput 
+        <TextInput
           style={styles.input}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           maxLength = {40}
-          placeholder="Deck Title"
+          placeholder='Deck Title'
           autoFocus={true}/>
-        <Button 
+        <Button
             style={{ backgroundColor: baseColorAccentPrimary}}
             onPress={() => this.submit()}>
           Create Deck
@@ -57,8 +57,7 @@ class NewDeck extends Component {
 
 const styles = StyleSheet.create({
   header:{
-    alignSelf: "center",
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 30,
     color: textColorPrimary,
     padding: 50,

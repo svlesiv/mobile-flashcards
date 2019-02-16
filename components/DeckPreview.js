@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import { withNavigation } from "react-navigation";
-import { textColorSecondary, textColorPrimary, baseColorSecondary } from "../utils/colors";
+import React from 'react';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import { textColorSecondary, textColorPrimary, baseColorSecondary } from '../utils/colors';
 
-class DeckPreview extends Component {
-  render() {
-    const { title, numCards, navigation } = this.props;
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('Deck', {deckId: title})}>
-          <View style={styles.innerFlex}>
-            <Text style={styles.header}>{title}</Text>
-            <Text style={styles.body}>{numCards} cards</Text>
-          </View>
-        </TouchableOpacity>
+const DeckPreview = (props) => {
+  const { title, numCards, navigation } = props;
+  
+  return (
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Deck', {deckId: title})}
+      style={styles.container}>
+      <View style={styles.innerFlex}>
+        <Text style={styles.header}>{title}</Text>
+        <Text style={styles.body}>{numCards} cards</Text>
       </View>
-    );
-  }
+    </TouchableOpacity>
+  );
 }
+
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
     margin: 10,
     paddingTop: 20,
     paddingBottom: 30,
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   innerFlex: {
-    alignItems: "center",
+    alignItems: 'center',
   },
-  header:{
+  header: {
     fontSize: 30,
     color: textColorPrimary,
     padding: 5,
   },
-  body:{
+  body: {
     fontSize: 20,
     color: textColorSecondary,
   }

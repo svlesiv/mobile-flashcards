@@ -1,21 +1,21 @@
-import React from "react";
-import { View, Platform, StatusBar, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Platform, StatusBar, Text, StyleSheet } from 'react-native';
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import reducer from "./reducers";
-import middleware from "./middleware";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import middleware from './middleware';
 
-import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
-import { Constants } from "expo";
-import { setLocalNotification } from "./utils/notifications";
-import { baseColorPrimary, textColorPrimary, textColorSecondary } from "./utils/colors";
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { Constants } from 'expo';
+import { setLocalNotification } from './utils/notifications';
+import { baseColorPrimary, textColorPrimary, textColorSecondary } from './utils/colors';
 
-import Decks from "./components/Decks";
-import NewDeck from "./components/NewDeck";
-import Deck from "./components/Deck";
-import NewCard from "./components/NewCard";
-import Quiz from "./components/Quiz";
+import Decks from './components/Decks';
+import NewDeck from './components/NewDeck';
+import Deck from './components/Deck';
+import NewCard from './components/NewCard';
+import Quiz from './components/Quiz';
 
 const store = createStore(reducer, middleware);
 
@@ -31,17 +31,17 @@ const RouteConfigs = {
   Decks: {
     screen: Decks,
     navigationOptions: {
-      tabBarLabel: "Decks"
+      tabBarLabel: 'Decks'
     },
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions: {
-      tabBarLabel: "New Deck"
+      tabBarLabel: 'New Deck'
     },
   }
 };
-  
+
 const TabNavigatorConfig = {
   navigationOptions: {
     header: null
@@ -54,13 +54,13 @@ const TabNavigatorConfig = {
     },
     labelStyle: {
       fontSize: 17,
-      fontWeight: "bold"
+      fontWeight: 'bold'
     }
   }
 };
 
 const Tabs =
-Platform.OS === "ios"
+Platform.OS === 'ios'
 ? createBottomTabNavigator(RouteConfigs, TabNavigatorConfig)
 : createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig);
 
@@ -77,7 +77,7 @@ const MainNavigator = createStackNavigator({
       headerTintColor: textColorPrimary,
       headerStyle: {
         backgroundColor: baseColorPrimary,
-        marginTop: -40,
+        marginTop: -20,
       }
     }
   },
@@ -87,7 +87,7 @@ const MainNavigator = createStackNavigator({
       headerTintColor: textColorPrimary,
       headerStyle: {
         backgroundColor: baseColorPrimary,
-        marginTop: -40,
+        marginTop: -20,
       }
     }
   },
@@ -97,7 +97,7 @@ const MainNavigator = createStackNavigator({
       headerTintColor: textColorPrimary,
       headerStyle: {
         backgroundColor: baseColorPrimary,
-        marginTop: -40,
+        marginTop: -20,
       }
     }
   }
@@ -107,13 +107,13 @@ const StackContainer = createAppContainer(MainNavigator);
 
 export default class App extends React.Component {
   componentDidMount() {
-    setLocalNotification()
+    setLocalNotification();
   }
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <FlashcardStatusBar backgroundColor={baseColorPrimary} barStyle="dark-content" />
+          <FlashcardStatusBar backgroundColor={baseColorPrimary} barStyle='dark-content' />
           <Text style={styles.header}>UdaciFlashcards</Text>
           <StackContainer/>
         </View>
@@ -123,15 +123,15 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex:1,
     backgroundColor: baseColorPrimary
   },
-  header:{
-    alignSelf: "center",
+  header: {
+    alignSelf: 'center',
     color: textColorPrimary,
     fontSize: 20,
     padding:10,
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
-})
+});

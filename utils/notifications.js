@@ -1,5 +1,5 @@
-import { AsyncStorage } from "react-native";
-import { Notifications, Permissions } from "expo";
+import { AsyncStorage } from 'react-native';
+import { Notifications, Permissions } from 'expo';
 
 const NOTIFICATION_KEY = 'mobile-flashcards:notifications';
 
@@ -37,8 +37,8 @@ export function setLocalNotification () {
               // create an object that represents a date
               let tomorrow = new Date()
               tomorrow.setDate(tomorrow.getDate() + 1)
-              tomorrow.setHours(15)
-              tomorrow.setMinutes(0)
+              tomorrow.setHours(19)
+              tomorrow.setMinutes(18)
 
               // create notification
               Notifications.scheduleLocalNotificationAsync(
