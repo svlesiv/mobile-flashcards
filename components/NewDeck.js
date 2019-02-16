@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, KeyboardAvoidingView, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { addDeck } from '../actions';
 import { saveDeck } from '../utils/api';
 import Button from './Button';
 import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from '../utils/colors';
+import { FontAwesome } from '@expo/vector-icons'
 
 class NewDeck extends Component {
   state = {
@@ -36,7 +37,14 @@ class NewDeck extends Component {
 
   render() {
     return (
-      <View>
+      <KeyboardAvoidingView behavior='padding' enabled>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.goBack()}>
+          <View style={styles.iconWrap}>
+            <FontAwesome style={styles.icon} name='angle-left' size={40} color={textColorPrimary} />
+            <Text style={styles.iconText}>Back</Text>
+          </View>
+        </TouchableOpacity>
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
@@ -50,17 +58,28 @@ class NewDeck extends Component {
             onPress={() => this.submit()}>
           Create Deck
         </Button>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  iconWrap: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icon: {
+    margin: 10
+  },
+  iconText: {
+    fontSize: 17
+  },
   header:{
     textAlign: 'center',
     fontSize: 30,
     color: textColorPrimary,
     padding: 50,
+    paddingTop: 0
   },
   input:{
     borderWidth: 1,
@@ -68,7 +87,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 20,
     margin: 40,
-    marginTop: 0,
+    marginBottom: 20,
+    marginTop: -20,
     fontSize: 20
   }
 });
