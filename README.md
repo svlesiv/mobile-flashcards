@@ -10,4 +10,4 @@ UdaciFlashcards is a mobile application (iOS and Android) that allows users to s
 * start the development server with `yarn start`
 
 ## Supported platforms
-Tested on iOS 7 and Pixel 2 XL (emulator).
+The application works on both iOS and Android platforms. Tested on iPhone 7 and Pixel 2 XL (emulator).
