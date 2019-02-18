@@ -19,14 +19,7 @@ import Quiz from './components/Quiz';
 
 const store = createStore(reducer, middleware);
 
-function FlashcardStatusBar({backgroundColor, ...props}) {
-  return (
-    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  );
-}
-
+// Tab navigation.
 const RouteConfigs = {
   Decks: {
     screen: Decks,
@@ -65,6 +58,7 @@ Platform.OS === 'ios'
 ? createBottomTabNavigator(RouteConfigs, TabNavigatorConfig)
 : createMaterialTopTabNavigator(RouteConfigs, TabNavigatorConfig);
 
+// Stack navigation.
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
@@ -114,7 +108,9 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <FlashcardStatusBar backgroundColor={baseColorPrimary} barStyle='dark-content' />
+          <View style={{height: Constants.statusBarHeight}}>
+            <StatusBar translucent backgroundColor={baseColorPrimary} barStyle='dark-content' />
+          </View>
           <Text style={styles.header}>UdaciFlashcards</Text>
           <StackContainer/>
         </View>

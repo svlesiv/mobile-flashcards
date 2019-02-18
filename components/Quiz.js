@@ -13,32 +13,44 @@ class Quiz extends Component {
     incorrect: 0,
     showAnswer: false
   }
+
   static navigationOptions = {
     title: 'Quiz'
   };
 
+  /**
+  * @description Changes the state of a card index.
+  */
   nextCard = () => {
     if(this.state.index < this.props.deck.questions.length-1) {
       this.setState({
         index: this.state.index + 1
-      })
+      });
     }
   }
 
+  /**
+  * @description Depending on the value of a parameter,
+  *              changes the state of correct or incorrect answer.
+  * @param {boolean} isCorrect
+  */
   gradeAnswer = (isCorrect) => {
     if (this.state.correct + this.state.incorrect < this.props.deck.questions.length){
       if (isCorrect){
         this.setState({
           correct: this.state.correct + 1
-        })
+        });
       }else {
         this.setState({
           incorrect: this.state.incorrect + 1
-        })
+        });
       }
     }
   }
 
+  /**
+  * @description Calls method nextCard() and gradeAnswer().
+  */
   handleAnswer = (isCorrect) => {
     this.nextCard();
     this.gradeAnswer(isCorrect);
@@ -47,6 +59,9 @@ class Quiz extends Component {
     clearLocalNotification().then(setLocalNotification);
   }
 
+  /**
+  * @description Resets the state of the quiz.
+  */
   resetQuiz = () => {
     this.setState({
       index: 0,

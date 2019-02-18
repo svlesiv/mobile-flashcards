@@ -5,33 +5,41 @@ import { addDeck } from '../actions';
 import { saveDeck } from '../utils/api';
 import Button from './Button';
 import { textColorPrimary, textColorSecondary, baseColorAccentPrimary } from '../utils/colors';
-import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome } from '@expo/vector-icons';
 
 class NewDeck extends Component {
   state = {
-    text: ''
+    title: ''
   }
 
+  /**
+  * @description Saves a new deck and redirects to newly created deck;
+  *              resets the state of a title.
+  */
   submit = () => {
     const newDeck = {
-      [this.state.text]: {
-        title: this.state.text,
+      [this.state.title]: {
+        title: this.state.title,
         questions: []
       }
     };
-    //dispatch action
+
+    // dispatch action
     this.props.dispatch(
       addDeck(
         newDeck
       )
     );
-    //save to AsyncStorage
-    saveDeck(this.state.text, newDeck)
-    //navigate to newly created deck
-    this.props.navigation.navigate('Deck', {deckId: this.state.text});
 
+    // save to AsyncStorage
+    saveDeck(this.state.title, newDeck)
+
+    // navigate to newly created deck
+    this.props.navigation.navigate('Deck', {deckId: this.state.title});
+
+    // reset state of the title
     this.setState({
-      text: ''
+      title: ''
     });
   }
 
@@ -48,8 +56,8 @@ class NewDeck extends Component {
         <Text style={styles.header}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
+          onChangeText={(title) => this.setState({title})}
+          value={this.state.title}
           maxLength = {40}
           placeholder='Deck Title'
           autoFocus={true}/>

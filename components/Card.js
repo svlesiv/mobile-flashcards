@@ -9,6 +9,12 @@ export default class Card extends Component {
     showAnswer: false
   }
 
+  /**
+  * @description Checks if an answer is correct and 
+  *              passes the value to a method handleAnswer() of a parent component;
+  *              Resets state of showAnswer to false.
+  * @param {string} ans
+  */
   handleAnswer = (ans) => {
     let isCorrect = this.props.deck.questions[this.props.index].answer===ans;
     this.props.handleAnswer(isCorrect);

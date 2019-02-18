@@ -12,20 +12,24 @@ class NewCard extends Component {
     question: '',
     answer: 'yes'
   }
+
   static navigationOptions = {
     title: 'Add Card'
   };
 
+  /**
+  * @description Saves a new card and redirects to the previous view.
+  */
   submit = () => {
     const { dispatch, deck, navigation } = this.props;
 
-    //create object with question and answer
+    // create object with question and answer
     const newCard = {
       question: this.state.question,
       answer: this. state.answer
     };
 
-    //dispatch action
+    // dispatch action
     dispatch(
       addCard(
         newCard,
@@ -33,10 +37,10 @@ class NewCard extends Component {
       )
     );
 
-    //save to AsyncStorage
+    // save to AsyncStorage
     saveCard(deck, newCard);
 
-    //redirect to the deck
+    // redirect to the deck
     navigation.goBack();
   }
 

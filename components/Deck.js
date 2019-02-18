@@ -12,6 +12,7 @@ class Deck extends Component {
 
   componentDidMount() {
     const { opacity, bounceValue } = this.state;
+
     Animated.sequence([
       Animated.timing(opacity, { toValue: 1, duration: 200 }),
       Animated.timing(bounceValue, { duration: 200, toValue: 1.01 }),
@@ -26,6 +27,10 @@ class Deck extends Component {
     };
   };
 
+  /**
+  * @description Navigates to Quiz view if a deck has cards, 
+  *              otherwise shows alert message.
+  */
   handleQuizRedirect = () => {
     this.props.deck.questions.length > 0
       ? this.props.navigation.navigate('Quiz', {deckId: this.props.deck.title})
