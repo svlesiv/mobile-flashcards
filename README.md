@@ -1,5 +1,5 @@
 # UdaciFlashCards
-UdaciFlashcards is a mobile application (iOS and Android) that allows users to study collections of flashcards. Users are able to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+UdaciFlashcards is a mobile application (iOS and Android) that allows users to study collections of flashcards. Users are able to create different categories of flashcards called "decks", add flashcards to those decks, and take quizzes on those decks.
 
 ![](./assets/flashcards.gif)
 
